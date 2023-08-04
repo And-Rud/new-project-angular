@@ -1,0 +1,97 @@
+<div class="container">
+  <br />
+  <h4>
+    <mark>Auto:</mark> {{ name }} <small>{{ model }}</small>
+  </h4>
+  <div class="alert alert-success">
+    Characteristics auto:
+    <ul>
+      <li>
+        Speed: <strong>{{ speed }}</strong>
+      </li>
+      <li>
+        Color auto: <strong>{{ colors.car }}</strong>
+      </li>
+      <li>
+        Color salon: <strong>{{ colors.salon }}</strong>
+      </li>
+      <li>
+        Color speed: <strong>{{ colors.wheel }}</strong>
+      </li>
+    </ul>
+  </div>
+
+  <h5>Redacting obj</h5>
+  <button class="btn btn-danger" (click)="showEdit()">Redacting</button>
+  <form *ngIf="isEdit">
+    <div class="form-group">
+      <input
+        type="text"
+        placeholder="Brand auto"
+        class="form-control"
+        name="name"
+        [(ngModel)]="name"
+      />
+      <input
+        type="number"
+        placeholder="Speed"
+        class="form-control"
+        name="speed"
+        [(ngModel)]="speed"
+      />
+      <input
+        type="text"
+        placeholder="Color car"
+        class="form-control"
+        name="car"
+        [(ngModel)]="colors.car"
+      />
+      <input
+        type="text"
+        placeholder="Color saloon"
+        class="form-control"
+        name="salon"
+        [(ngModel)]="colors.salon"
+      />
+      <input
+        type="text"
+        placeholder="Color wheel"
+        class="form-control"
+        name="wheel"
+        [(ngModel)]="colors.wheel"
+      />
+    </div>
+  </form>
+
+  <h5>Auto desc</h5>
+  <form (submit)="addOpt(option.value)">
+    <div class="form-group">
+      <label for="option">Adding new opportunity</label>
+      <input
+        type="text"
+        id="option"
+        placeholder="Write here something"
+        class="form-control"
+        #option
+      />
+      <br />
+      <button type="submit" class="btn btn-outline-success">Adding</button>
+    </div>
+  </form>
+  <br />
+  <div class="alert alert-warning">
+    <ul>
+      <li *ngFor="let opt of options; let i = index">
+        {{ i + 1 }}. {{ opt }}
+        <button class="btn btn-warning btn-sm" (click)="deleteOpt(opt)">
+          x
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <h5>Choose auto</h5>
+  <button class="btn btn-danger" (click)="carSelect('bmw')">BMW</button>
+  <button class="btn btn-success" (click)="carSelect('audi')">Audi</button>
+  <button class="btn btn-info" (click)="carSelect('mer')">Mercedes</button>
+</div>
